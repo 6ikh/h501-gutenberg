@@ -1,7 +1,7 @@
-from .transform import DATA, get_data
+from .transform import DATA
 
 def list_authors(by_languages=False, alias=False):
-    df = get_data()
+    df = DATA
 
     if alias:
         df = df[df["author_alias"].notna()]
