@@ -9,7 +9,7 @@ def list_authors(by_languages=False, alias=False):
 
     if by_languages:
         df["aliases_count"] = df["aliases"].str.count(",") + 1
-        df = df.sort_values("translation_count", ascending=False)
+        df = df.sort_values("aliases_count", ascending=False)
 
     if alias:
         return df["alias"].tolist()
