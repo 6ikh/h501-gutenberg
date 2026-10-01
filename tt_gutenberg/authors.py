@@ -7,7 +7,7 @@ def list_authors(by_languages=False, alias=False):
         df = df[df["author_alias"].notna()]
 
     if by_languages:
-        df = df.sort_values("aliases_count", ascending=False)
+        df = df.sort_values("alias", ascending=False)
 
     if alias:
         return df["author_alias"].tolist()
