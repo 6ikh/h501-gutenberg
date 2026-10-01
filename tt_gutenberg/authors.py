@@ -14,5 +14,3 @@ def list_authors(by_languages=False, alias=False):
         return df["author_alias"].tolist()
 
     return df
-
-get_data = get_data
