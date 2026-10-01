@@ -1,14 +1,12 @@
-from .data import load_gutenberg_data
-
+from .transform import DATA
 
 def list_authors(by_languages=False, alias=False):
-    df = load_gutenberg_data()
+    df = DATA
 
     if alias:
         df = df[df["alias"].notna()]
 
     if by_languages:
-        df["aliases_count"] = df["aliases"].str.count(",") + 1
         df = df.sort_values("aliases_count", ascending=False)
 
     if alias:

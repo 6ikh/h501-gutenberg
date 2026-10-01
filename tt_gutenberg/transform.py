@@ -6,3 +6,5 @@ def get_data():
 
     df["aliases_count"] = df["aliases"].str.count(",") + 1
     return df
+
+DATA = get_data()
