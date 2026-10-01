@@ -1,7 +1,7 @@
-from .transform import DATA
+from .transform import get_data
 
 def list_authors(by_languages=False, alias=False):
-    df = DATA
+    df = get_data()
 
     if by_languages:
         df = df.sort_values("translation_count", ascending=False)
