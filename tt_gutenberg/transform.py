@@ -15,3 +15,5 @@ def get_data():
     df["author_alias"] = df["alias"]
 
     return df
+
+DATA = get_data()
