@@ -1,31 +1,26 @@
-from .data import load_gutenberg_data, load_gutenberg_metadata
+from .data import load_gutenberg_data
+
 
 def get_data():
-    authors = load_gutenberg_data()
-    metadata = load_gutenberg_metadata()
+    df_authors, df_metadata = load_gutenberg_data()
 
-    language_count = (
-        metadata.groupby("gutenberg_author_id")["language"]
-        .nunique()
-        .reset_index(name="translation_count")
+    df_authors = (
+        df_authors
+        .drop(columns=["author"], errors="ignore")
+        .rename(columns={"alias": "author_alias"})
     )
 
-    df = authors.merge(
-        metadata[["gutenberg_author_id", "language"]],
+    df = df_metadata.merge(
+        df_authors,
         on="gutenberg_author_id",
         how="left"
     )
 
-    df = df.merge(
-        language_count,
-        on="gutenberg_author_id",
-        how="left"
-    )
-
-    df["author_alias"] = df["alias"]
+    df["translation_count"] = df.groupby(
+        "gutenberg_author_id"
+    )["language"].transform("nunique")
 
     return df
 
 
 DATA = get_data()
-

@@ -1,10 +1,11 @@
 import pandas as pd
 
+
 def load_gutenberg_data():
-    url = "https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-06-03/gutenberg_authors.csv"
-    return pd.read_csv(url)
+    authors_url = "https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-06-03/gutenberg_authors.csv"
+    metadata_url = "https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-06-03/gutenberg_metadata.csv"
 
+    df_authors = pd.read_csv(authors_url)
+    df_metadata = pd.read_csv(metadata_url)
 
-def load_gutenberg_metadata():
-    url = "https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-06-03/gutenberg_metadata.csv"
-    return pd.read_csv(url)
+    return df_authors, df_metadata
