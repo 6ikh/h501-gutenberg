@@ -1,9 +1,8 @@
-from .data import load_gutenberg_data, load_gutenberg_metadata
+from .data import load_gutenberg_data
 
 
 def get_data():
-    authors = load_gutenberg_data()
-    metadata = load_gutenberg_metadata()
+    authors, metadata = load_gutenberg_data()
 
     authors["author_alias"] = authors["alias"]
 
@@ -15,4 +14,3 @@ def get_data():
 
 
 DATA = get_data()
-
