@@ -7,6 +7,11 @@ def get_data():
     df["aliases_count"] = df["alias"].str.count(",") + 1
 
     df["author_alias"] = df["alias"]
+
+    if "language" not in df.columns:
+        df["language"] = "unknown"
+
     return df
+
 
 DATA = get_data()
