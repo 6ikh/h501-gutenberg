@@ -1,13 +1,17 @@
 from .transform import get_data
 
+
 def list_authors(by_languages=False, alias=False):
     df = get_data()
 
+    if alias:
+        df = df[df["alias"].notna()]
+
     if by_languages:
-        df = df.sort_values("translation_count", ascending=False)
+        counts = df.groupby("alias")["language"].nunique()
+        df = counts.sort_values(ascending=False)
 
     if alias:
-        df = df[df["author_alias"].notna()]
-        return df["author_alias"].drop_duplicates().tolist()
+        return df.index.tolist()
 
     return df
